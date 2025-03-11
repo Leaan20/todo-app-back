@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 import { config } from './config.js';
 
 const { dbUrl } = config;
+
+if (!dbUrl) {
+    throw new Error("La variable dbUrl no está definida");
+}
+
 class DB {
     constructor() {
         this.connect()
