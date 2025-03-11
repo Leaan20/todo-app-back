@@ -9,7 +9,11 @@ import  taskRouter  from './routes/task.router.js';
 const app = express();
 const port = config.port;
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin:[ 'http://localhost:5173',
+            'https://todoappbylean.netlify.app'
+    ],
+    methods: ['GET', 'POST', 'PUT','PATCH','DELETE'],
+    credentials: true
 };
 
 
@@ -17,7 +21,7 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors(corsOptions.origin));
+app.use(cors(corsOptions));
 
 // routes
 app.use('/api/task', taskRouter);
